@@ -53,7 +53,7 @@ public class RayManager : MonoBehaviour
         for (int i = 0; i < hits.Length; i++)
         {
             Vector3 direction = (gameObject.transform.rotation * directions[i]).normalized;
-            newHits[i] = CastSphere(direction);
+            newHits[i] = CastRay(direction);
         }
 
         hits = newHits;

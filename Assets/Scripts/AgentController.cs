@@ -46,6 +46,7 @@ public class AgentController : MonoBehaviour
         setRotation(lookVektor.x);
         moveBody();
         jump();
+        jumpCall = false;
     }
 
     private void moveBody()
@@ -84,6 +85,12 @@ public class AgentController : MonoBehaviour
         moveVektor = move;
         lookVektor = look;
         jumpCall = jump;
+    }
+
+    public void SetInput(Vector2 move, Vector2 look)
+    {
+        moveVektor = move;
+        lookVektor = look;
     }
 
     public bool GetIsGrounded()

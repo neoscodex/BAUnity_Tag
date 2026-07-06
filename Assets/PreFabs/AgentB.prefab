@@ -595,7 +595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.ML-Agents::Unity.MLAgents.Policies.BehaviorParameters
   m_BrainParameters:
     VectorObservationSize: 60
-    NumStackedVectorObservations: 5
+    NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
       BranchSizes: 03000000030000000300000002000000
@@ -606,7 +606,7 @@ MonoBehaviour:
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
   m_BehaviorType: 0
-  m_BehaviorName: Tag_Test_0
+  m_BehaviorName: Tag
   TeamId: 1
   m_UseChildSensors: 1
   m_UseChildActuators: 1
@@ -630,8 +630,9 @@ MonoBehaviour:
   MaxStep: 3000
   _target: {fileID: 0}
   _start: {fileID: 0}
-  _rotationAmount: 5
+  _rotationAmount: 2
   _isTagger: 1
+  filename: 
   targetHit: 0
 --- !u!114 &7714223601930002463
 MonoBehaviour:

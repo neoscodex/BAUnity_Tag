@@ -2,50 +2,45 @@ using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
+using System.IO;
 
 public class AgentManager : Agent
 {
     [SerializeField] private GameObject _target;
     [SerializeField] private GameObject _start;
-    [SerializeField] private float _rotationAmount = 5.0f;
+    [SerializeField] private float _rotationAmount = 2.0f;
     [SerializeField] private float _isTagger = 0.0f;
+    [SerializeField] private string filename;
 
     public bool targetHit = false;
 
-    private int _currentEpisode = 0;
     private float _cumulativeReward = 0.0f;
     private float _maxDistance;
-    private float _moveSpeed;
+    private int _stepCount = 0;
+    private string _filePath;
     private Rigidbody _rb;
 
     public override void Initialize()
     {
         targetHit = false;
 
-        _currentEpisode = 0;
         _cumulativeReward = 0.0f;
         _maxDistance = gameObject.GetComponent<RayManager>().GetMaxDistance();
-        _moveSpeed = gameObject.GetComponent<AgentController>().moveSpeed;
+        _stepCount = 0;
         _rb = gameObject.GetComponent<Rigidbody>();
+
+        gameObject.GetComponent<AgentController>().moveSpeed *= 1.05f;
+
+        //CreateCSVFile();
     }
 
     public override void OnEpisodeBegin()
     {
+        //LogData();
+        Debug.Log(_stepCount + "," + _cumulativeReward + "," + targetHit);
         targetHit = false;
-
-        if (_isTagger >= 1.0f)
-        {
-            _isTagger = 0.0f;
-            gameObject.GetComponent<AgentController>().moveSpeed = _moveSpeed;
-        }
-        else
-        {
-            _isTagger = 1.0f;
-            gameObject.GetComponent<AgentController>().moveSpeed = _moveSpeed * 1.05f;
-        }
-
-        _currentEpisode++;
         _cumulativeReward = 0.0f;
+        _stepCount = 0;
 
         ResetEnviorment();
     }
@@ -54,13 +49,13 @@ public class AgentManager : Agent
     {
         float agentRole = _isTagger;
 
-        Vector3 targetDirection = (_target.transform.position - transform.position).normalized;
+        Vector3 targetDirection = transform.InverseTransformDirection((_target.transform.position - transform.position).normalized);
         float targetDistance = Mathf.Clamp(Vector3.Distance(transform.position, _target.transform.position) / _maxDistance, -1.0f, 1.0f);
 
         float angle = transform.eulerAngles.y * Mathf.Deg2Rad;
         float agentSin = Mathf.Sin(angle);
         float agentCos = Mathf.Cos(angle);
-        Vector3 agentVelocity = _rb.linearVelocity.normalized;
+        Vector3 agentVelocity = transform.InverseTransformDirection(_rb.linearVelocity.normalized);
         float agentIsGrounded = gameObject.GetComponent<AgentController>().GetIsGrounded() ? 1.0f : 0.0f;
         float agentHitTarget = targetHit? 1.0f : 0.0f;
 
@@ -88,7 +83,7 @@ public class AgentManager : Agent
 
             if (hit.collider != null)
             {
-                hitDirection = (hit.point - transform.position).normalized;
+                hitDirection = transform.InverseTransformDirection((hit.point - transform.position).normalized);
                 hitDistance = Vector3.Distance(transform.position, hit.point) / _maxDistance;
                 targetHit = hit.collider.gameObject == _target ? 1.0f : 0.0f;
                 anyHit = 1.0f;
@@ -105,14 +100,15 @@ public class AgentManager : Agent
 
     public override void OnActionReceived(ActionBuffers actions)
     {
-        if (targetHit ) EndEpisode(); //&& _target.GetComponent<AgentManager>().targetHit
-
         MoveAgent(actions.DiscreteActions);
+        _stepCount = StepCount;
 
-        if (_isTagger >= 1.0f) AddReward(-0.0002f);
-        else AddReward(0.0002f);
+        if (_isTagger >= 1.0f) AddReward(-1.0f / (float)MaxStep);
+        else AddReward(1.0f / (float)MaxStep);
 
         _cumulativeReward = GetCumulativeReward();
+
+        if (targetHit) EndEpisode(); //&& _target.GetComponent<AgentManager>().targetHit
     }
 
     private void ResetEnviorment()
@@ -121,6 +117,7 @@ public class AgentManager : Agent
         float randomOffsetY = Random.Range(-2.5f, 2.5f);
 
         transform.localPosition = _start.transform.localPosition + new Vector3(randomOffsetX, 0 , randomOffsetY);
+        _rb.linearVelocity = new Vector3(0, 0, 0);
         transform.localRotation = Quaternion.identity;
     }
 
@@ -142,7 +139,24 @@ public class AgentManager : Agent
         {
             if (_isTagger >= 1.0f) AddReward(1.0f);
             else AddReward(-1.0f);
+            _cumulativeReward = GetCumulativeReward();
             targetHit = true;
         }
+    }
+
+    private void CreateCSVFile()
+    {
+        _filePath = Path.Combine(Application.persistentDataPath, filename + "_tag_data.csv");
+
+        if (!File.Exists(_filePath))
+        {
+            File.WriteAllText(_filePath, "StepCount,CumulativeReward,isTagger,targetHit\n");
+        }
+    }
+
+    private void LogData()
+    {
+        string line = $"{_stepCount},{_cumulativeReward},{_isTagger},{targetHit}\n";
+        File.AppendAllText(_filePath, line);
     }
 }
