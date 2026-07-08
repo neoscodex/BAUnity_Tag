@@ -1,0 +1,66 @@
+{
+    "Tag": {
+        "checkpoints": [
+            {
+                "steps": 499114,
+                "file_path": "results\\UnityTagRun0\\Tag\\Tag-499114.onnx",
+                "reward": 1.0000001192092896,
+                "creation_time": 1783461804.9783876,
+                "auxillary_file_paths": [
+                    "results\\UnityTagRun0\\Tag\\Tag-499114.pt"
+                ]
+            },
+            {
+                "steps": 999114,
+                "file_path": "results\\UnityTagRun0\\Tag\\Tag-999114.onnx",
+                "reward": 0.11111112435658772,
+                "creation_time": 1783462909.008778,
+                "auxillary_file_paths": [
+                    "results\\UnityTagRun0\\Tag\\Tag-999114.pt"
+                ]
+            },
+            {
+                "steps": 1499114,
+                "file_path": "results\\UnityTagRun0\\Tag\\Tag-1499114.onnx",
+                "reward": -1.0000001192092896,
+                "creation_time": 1783464025.8231966,
+                "auxillary_file_paths": [
+                    "results\\UnityTagRun0\\Tag\\Tag-1499114.pt"
+                ]
+            },
+            {
+                "steps": 1999114,
+                "file_path": "results\\UnityTagRun0\\Tag\\Tag-1999114.onnx",
+                "reward": 1.0000001192092896,
+                "creation_time": 1783465138.8754025,
+                "auxillary_file_paths": [
+                    "results\\UnityTagRun0\\Tag\\Tag-1999114.pt"
+                ]
+            },
+            {
+                "steps": 2001114,
+                "file_path": "results\\UnityTagRun0\\Tag\\Tag-2001114.onnx",
+                "reward": 1.0000001192092896,
+                "creation_time": 1783465139.0644119,
+                "auxillary_file_paths": [
+                    "results\\UnityTagRun0\\Tag\\Tag-2001114.pt"
+                ]
+            }
+        ],
+        "elo": 1200.5,
+        "final_checkpoint": {
+            "steps": 2001114,
+            "file_path": "results\\UnityTagRun0\\Tag.onnx",
+            "reward": 1.0000001192092896,
+            "creation_time": 1783465139.0644119,
+            "auxillary_file_paths": [
+                "results\\UnityTagRun0\\Tag\\Tag-2001114.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.2.0.dev0",
+        "torch_version": "2.2.2+cu121"
+    }
+}

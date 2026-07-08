@@ -45,8 +45,8 @@ public class AgentController : MonoBehaviour
         if (isHeuristic) SetInput(moveAction.ReadValue<Vector2>(), lookAction.ReadValue<Vector2>(), jumpAction.ReadValue<float>() > 0.5f);
         setRotation(lookVektor.x);
         moveBody();
-        jump();
-        jumpCall = false;
+        //jump();
+        //jumpCall = false;
     }
 
     private void moveBody()

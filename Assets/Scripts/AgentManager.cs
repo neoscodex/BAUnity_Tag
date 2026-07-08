@@ -31,12 +31,12 @@ public class AgentManager : Agent
 
         gameObject.GetComponent<AgentController>().moveSpeed *= 1.05f;
 
-        //CreateCSVFile();
+        CreateCSVFile();
     }
 
     public override void OnEpisodeBegin()
     {
-        //LogData();
+        LogData();
         Debug.Log(_stepCount + "," + _cumulativeReward + "," + targetHit);
         targetHit = false;
         _cumulativeReward = 0.0f;
@@ -61,15 +61,15 @@ public class AgentManager : Agent
 
         sensor.AddObservation(agentRole);
         sensor.AddObservation(targetDirection.x);
-        sensor.AddObservation(targetDirection.y);
+        //sensor.AddObservation(targetDirection.y);
         sensor.AddObservation(targetDirection.z);
         sensor.AddObservation(targetDistance);
         sensor.AddObservation(agentSin);
         sensor.AddObservation(agentCos);
         sensor.AddObservation(agentVelocity.x);
-        sensor.AddObservation(agentVelocity.y);
+        //sensor.AddObservation(agentVelocity.y);
         sensor.AddObservation(agentVelocity.z);
-        sensor.AddObservation(agentIsGrounded);
+        //sensor.AddObservation(agentIsGrounded);
         sensor.AddObservation(agentHitTarget);
 
         RaycastHit[] hits = gameObject.GetComponent<RayManager>().GetRaycastHits();
@@ -90,7 +90,7 @@ public class AgentManager : Agent
             }
 
             sensor.AddObservation(hitDirection.x);
-            sensor.AddObservation(hitDirection.y);
+            //sensor.AddObservation(hitDirection.y);
             sensor.AddObservation(hitDirection.z);
             sensor.AddObservation(hitDistance);
             sensor.AddObservation(targetHit);
@@ -108,7 +108,7 @@ public class AgentManager : Agent
 
         _cumulativeReward = GetCumulativeReward();
 
-        if (targetHit) EndEpisode(); //&& _target.GetComponent<AgentManager>().targetHit
+        //if (targetHit) EndEpisode(); //&& _target.GetComponent<AgentManager>().targetHit
     }
 
     private void ResetEnviorment()
@@ -128,9 +128,10 @@ public class AgentManager : Agent
 
         Vector2 movement = vertical + horizontal;
         Vector2 rotation = actions[2] != 0 ? actions[2] == 1 ? new Vector2(_rotationAmount, 0) : new Vector2(-_rotationAmount, 0) : Vector2.zero;
-        bool jump = actions[3] != 0 ? false : true;
+        //bool jump = actions[3] != 0 ? false : true;
 
-        gameObject.GetComponent<AgentController>().SetInput(movement, rotation, jump);
+        //gameObject.GetComponent<AgentController>().SetInput(movement, rotation, jump);
+        gameObject.GetComponent<AgentController>().SetInput(movement, rotation);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -141,6 +142,7 @@ public class AgentManager : Agent
             else AddReward(-1.0f);
             _cumulativeReward = GetCumulativeReward();
             targetHit = true;
+            EndEpisode();
         }
     }
 
