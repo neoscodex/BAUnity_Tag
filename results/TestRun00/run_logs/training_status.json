@@ -1,0 +1,111 @@
+{
+    "Tag": {
+        "checkpoints": [
+            {
+                "steps": 3000288,
+                "file_path": "results\\TestRun00\\Tag\\Tag-3000288.onnx",
+                "reward": 0.9031238402639117,
+                "creation_time": 1783510001.251122,
+                "auxillary_file_paths": [
+                    "results\\TestRun00\\Tag\\Tag-3000288.pt"
+                ]
+            },
+            {
+                "steps": 3499926,
+                "file_path": "results\\TestRun00\\Tag\\Tag-3499926.onnx",
+                "reward": 0.8363333642482758,
+                "creation_time": 1783510948.9634204,
+                "auxillary_file_paths": [
+                    "results\\TestRun00\\Tag\\Tag-3499926.pt"
+                ]
+            },
+            {
+                "steps": 3999530,
+                "file_path": "results\\TestRun00\\Tag\\Tag-3999530.onnx",
+                "reward": 0.8264444669087728,
+                "creation_time": 1783511489.381145,
+                "auxillary_file_paths": [
+                    "results\\TestRun00\\Tag\\Tag-3999530.pt"
+                ]
+            },
+            {
+                "steps": 4223615,
+                "file_path": "results\\TestRun00\\Tag\\Tag-4223615.onnx",
+                "reward": -0.6275098183575798,
+                "creation_time": 1783511795.3687515,
+                "auxillary_file_paths": [
+                    "results\\TestRun00\\Tag\\Tag-4223615.pt"
+                ]
+            },
+            {
+                "steps": 4499229,
+                "file_path": "results\\TestRun00\\Tag\\Tag-4499229.onnx",
+                "reward": -0.5261112054189047,
+                "creation_time": 1783547000.4071252,
+                "auxillary_file_paths": [
+                    "results\\TestRun00\\Tag\\Tag-4499229.pt"
+                ]
+            },
+            {
+                "steps": 4949871,
+                "file_path": "results\\TestRun00\\Tag\\Tag-4949871.onnx",
+                "reward": null,
+                "creation_time": 1783547562.5967307,
+                "auxillary_file_paths": [
+                    "results\\TestRun00\\Tag\\Tag-4949871.pt"
+                ]
+            },
+            {
+                "steps": 4999675,
+                "file_path": "results\\TestRun00\\Tag\\Tag-4999675.onnx",
+                "reward": -0.3659999668598175,
+                "creation_time": 1783547659.2765856,
+                "auxillary_file_paths": [
+                    "results\\TestRun00\\Tag\\Tag-4999675.pt"
+                ]
+            },
+            {
+                "steps": 5499179,
+                "file_path": "results\\TestRun00\\Tag\\Tag-5499179.onnx",
+                "reward": 0.49900008241335553,
+                "creation_time": 1783548233.3151028,
+                "auxillary_file_paths": [
+                    "results\\TestRun00\\Tag\\Tag-5499179.pt"
+                ]
+            },
+            {
+                "steps": 5999810,
+                "file_path": "results\\TestRun00\\Tag\\Tag-5999810.onnx",
+                "reward": 0.0653333067893982,
+                "creation_time": 1783548810.5847297,
+                "auxillary_file_paths": [
+                    "results\\TestRun00\\Tag\\Tag-5999810.pt"
+                ]
+            },
+            {
+                "steps": 6009810,
+                "file_path": "results\\TestRun00\\Tag\\Tag-6009810.onnx",
+                "reward": 0.0653333067893982,
+                "creation_time": 1783548811.008449,
+                "auxillary_file_paths": [
+                    "results\\TestRun00\\Tag\\Tag-6009810.pt"
+                ]
+            }
+        ],
+        "elo": 1239.1484978750013,
+        "final_checkpoint": {
+            "steps": 6009810,
+            "file_path": "results\\TestRun00\\Tag.onnx",
+            "reward": 0.0653333067893982,
+            "creation_time": 1783548811.008449,
+            "auxillary_file_paths": [
+                "results\\TestRun00\\Tag\\Tag-6009810.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.2.0.dev0",
+        "torch_version": "2.2.1+cpu"
+    }
+}

@@ -55,7 +55,7 @@ public class AgentController : MonoBehaviour
         Vector3 movement = new Vector3(moveVektor.x, 0.0f, moveVektor.y);
         Quaternion rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
         movement.Normalize();
-        movement.z = movement.z > 0 ? movement.z * 1.2f : movement.z;
+        movement.z = movement.z > 0 ? movement.z * 1.5f : movement.z;
         movement = rotation * movement;
         movement *= moveSpeed;
         movement.y = rb.linearVelocity.y;

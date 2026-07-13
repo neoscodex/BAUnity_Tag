@@ -594,7 +594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.ML-Agents::Unity.MLAgents.Policies.BehaviorParameters
   m_BrainParameters:
-    VectorObservationSize: 49
+    VectorObservationSize: 48
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
@@ -630,7 +630,7 @@ MonoBehaviour:
   MaxStep: 3000
   _target: {fileID: 0}
   _start: {fileID: 0}
-  _rotationAmount: 2
+  _rotationAmount: 5
   _isTagger: 1
   filename: UnityRacingRun00
   targetHit: 0

@@ -29,7 +29,7 @@ public class AgentManager : Agent
         _stepCount = 0;
         _rb = gameObject.GetComponent<Rigidbody>();
 
-        gameObject.GetComponent<AgentController>().moveSpeed *= 1.05f;
+        //gameObject.GetComponent<AgentController>().moveSpeed *= 1.05f;
 
         CreateCSVFile();
     }
@@ -37,7 +37,7 @@ public class AgentManager : Agent
     public override void OnEpisodeBegin()
     {
         LogData();
-        Debug.Log(_stepCount + "," + _cumulativeReward + "," + targetHit);
+        //Debug.Log(_stepCount + "," + _cumulativeReward + "," + targetHit);
         targetHit = false;
         _cumulativeReward = 0.0f;
         _stepCount = 0;
@@ -56,8 +56,8 @@ public class AgentManager : Agent
         float agentSin = Mathf.Sin(angle);
         float agentCos = Mathf.Cos(angle);
         Vector3 agentVelocity = transform.InverseTransformDirection(_rb.linearVelocity.normalized);
-        float agentIsGrounded = gameObject.GetComponent<AgentController>().GetIsGrounded() ? 1.0f : 0.0f;
-        float agentHitTarget = targetHit? 1.0f : 0.0f;
+        //float agentIsGrounded = gameObject.GetComponent<AgentController>().GetIsGrounded() ? 1.0f : 0.0f;
+        //float agentHitTarget = targetHit? 1.0f : 0.0f;
 
         sensor.AddObservation(agentRole);
         sensor.AddObservation(targetDirection.x);
@@ -70,7 +70,7 @@ public class AgentManager : Agent
         //sensor.AddObservation(agentVelocity.y);
         sensor.AddObservation(agentVelocity.z);
         //sensor.AddObservation(agentIsGrounded);
-        sensor.AddObservation(agentHitTarget);
+        //sensor.AddObservation(agentHitTarget);
 
         RaycastHit[] hits = gameObject.GetComponent<RayManager>().GetRaycastHits();
 
