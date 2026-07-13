@@ -30,13 +30,12 @@ public class AgentManager : Agent
         _rb = gameObject.GetComponent<Rigidbody>();
 
         //gameObject.GetComponent<AgentController>().moveSpeed *= 1.05f;
-
-        CreateCSVFile();
+        //CreateCSVFile();
     }
 
     public override void OnEpisodeBegin()
     {
-        LogData();
+        //LogData();
         //Debug.Log(_stepCount + "," + _cumulativeReward + "," + targetHit);
         targetHit = false;
         _cumulativeReward = 0.0f;
@@ -103,10 +102,18 @@ public class AgentManager : Agent
         MoveAgent(actions.DiscreteActions);
         _stepCount = StepCount;
 
-        if (_isTagger >= 1.0f) AddReward(-1.0f / (float)MaxStep);
-        else AddReward(1.0f / (float)MaxStep);
+        if (_isTagger >= 1.0f)
+        {
+            AddReward(-1.0f / (float)MaxStep);
+            _cumulativeReward += (-1.0f / (float)MaxStep);
+        }
+        else
+        {
+            AddReward(1.0f / (float)MaxStep);
+            _cumulativeReward += (1.0f / (float)MaxStep);
+        }
 
-        _cumulativeReward = GetCumulativeReward();
+        //_cumulativeReward = GetCumulativeReward();
 
         //if (targetHit) EndEpisode(); //&& _target.GetComponent<AgentManager>().targetHit
     }
@@ -138,9 +145,17 @@ public class AgentManager : Agent
     {
         if (collision.gameObject == _target)
         {
-            if (_isTagger >= 1.0f) AddReward(1.0f);
-            else AddReward(-1.0f);
-            _cumulativeReward = GetCumulativeReward();
+            if (_isTagger >= 1.0f)
+            {
+                AddReward(1.0f);
+                _cumulativeReward += 1.0f;
+            }
+            else
+            {
+                AddReward(-1.0f);
+                _cumulativeReward += 1.0f;
+            }
+            //_cumulativeReward = GetCumulativeReward();
             targetHit = true;
             EndEpisode();
         }
